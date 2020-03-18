@@ -40,18 +40,15 @@ namespace calculadora.Controllers
                 case "9":
                 case "0":
                     if (visor == "0" || limparVisor) visor = bt;
-                    else visor += bt; //visor = visor + bt;
+                    else visor += bt; 
 
-                    // impedir o visor de ser limpo
+                    
                     limparVisor = false;
 
                     break;
 
                 case "+/-":
-                    // inverter o valor do visor
-                    // pode ser feito de duas formas:
-                    //  - multiplicar por -1 -> converter o valor para numero
-                    //  - processar a string: visor.StartsWith().ToString().Substring().Length
+              
                     visor = Convert.ToDouble(visor) * -1 + "";
 
                     break;
@@ -66,12 +63,11 @@ namespace calculadora.Controllers
                 case "x":
                 case "=":
 
-                    //primeira vez que um operador foi selecionado
+                  
                     if (operador != null)
                     {
 
-                        // executar a operação
-                        // variaveis auxiliares
+                       
                         double operando1 = Convert.ToDouble(operando);
                         double operando2 = Convert.ToDouble(visor);
 
@@ -90,31 +86,30 @@ namespace calculadora.Controllers
                                 visor = operando1 / operando2 + "";
                                 break;
 
-                            case "c":
-                                visor = "0";
-                                operador = "";
-                                operando = "";
+                            case "C":                               
                                 limparVisor = true;
+                                visor = "0";
                                 break;
 
                         }
 
 
                     }
-                    // guardar valores para "memoria futura"
+                   
                     if (bt != "=") operador = bt;
                     else operador = "";
                     operando = visor;
                     limparVisor = true;
-                    // guardar valores para "memoria futura"
-                    //operador = bt;
+                   
+                    
                     break;
+                    
 
 
 
             }
 
-            // levar o resultado do visor
+   
             ViewBag.Visor = visor;
             ViewBag.Operador = operador;
             ViewBag.Operando = operando;
